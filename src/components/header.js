@@ -8,7 +8,7 @@ import {
   useGlobalStateContext,
 } from "../context/globalContext"
 
-const Header = () => {
+const Header = ({ onCursor }) => {
   const dispatch = useGlobalDispatchContext()
   const { currentTheme } = useGlobalStateContext()
 
@@ -18,6 +18,10 @@ const Header = () => {
     } else {
       dispatch({ type: "TOGGLE_THEME", theme: "dark" })
     }
+  }
+
+  const menuHover = () => {
+    onCursor("locked")
   }
 
   useEffect(() => {
@@ -35,13 +39,21 @@ const Header = () => {
     >
       <Container>
         <Flex spaceBetween noHeight>
-          <Logo>
+          <Logo
+            onMouseEnter={() => onCursor("hovered")}
+            onMouseLeave={onCursor}
+          >
             <Link to="/">
-              F<span onClick={toggleTheme}></span>
+              F
+              <span
+                onClick={toggleTheme}
+                onMouseEnter={() => onCursor("pointer")}
+                onMouseLeave={onCursor}
+              ></span>
               <span></span>LS
             </Link>
           </Logo>
-          <Menu>
+          <Menu onMouseEnter={menuHover} onMouseLeave={onCursor}>
             <button>
               <span></span>
               <span></span>
