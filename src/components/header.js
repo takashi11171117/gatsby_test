@@ -7,10 +7,18 @@ import {
   useGlobalDispatchContext,
   useGlobalStateContext,
 } from "../context/globalContext"
+import useElementPosition from "../hooks/useElementPosition"
 
-const Header = ({ onCursor }) => {
+const Header = ({
+  onCursor,
+  setHamburgerPosition,
+  setToggleMenu,
+  toggleMenu,
+}) => {
   const dispatch = useGlobalDispatchContext()
   const { currentTheme } = useGlobalStateContext()
+  const hamburger = useRef(null)
+  const position = useElementPosition(hamburger)
 
   const toggleTheme = () => {
     if (currentTheme === "dark") {
@@ -22,6 +30,7 @@ const Header = ({ onCursor }) => {
 
   const menuHover = () => {
     onCursor("locked")
+    setHamburgerPosition({ x: position.x, y: position.y + 72 })
   }
 
   useEffect(() => {
@@ -53,7 +62,12 @@ const Header = ({ onCursor }) => {
               <span></span>LS
             </Link>
           </Logo>
-          <Menu onMouseEnter={menuHover} onMouseLeave={onCursor}>
+          <Menu
+            onClick={() => setToggleMenu(!toggleMenu)}
+            ref={hamburger}
+            onMouseEnter={menuHover}
+            onMouseLeave={onCursor}
+          >
             <button>
               <span></span>
               <span></span>

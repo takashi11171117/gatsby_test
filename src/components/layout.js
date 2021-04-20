@@ -7,6 +7,7 @@ import { normalize } from "styled-normalize"
 
 import CustomCursor from "./customCursor"
 import Header from "./header"
+import Navigation from "./navigation"
 
 import {
   useGlobalStateContext,
@@ -48,18 +49,27 @@ const Layout = ({ children }) => {
     }
   `)
 
+  const [hamburgerPosition, setHamburgerPosition] = useState({
+    x: 0,
+    y: 0,
+  })
+
   const [toggleMenu, setToggleMenu] = useState(false)
 
   const darkTheme = {
     background: "#000",
     text: "#fff",
     red: "#ea291e",
+    left: `${hamburgerPosition.x}px`,
+    top: `${hamburgerPosition.y}px`,
   }
 
   const lightTheme = {
     background: "#fff",
     text: "#000",
     red: "#ea291e",
+    left: `${hamburgerPosition.x}px`,
+    top: `${hamburgerPosition.y}px`,
   }
 
   const onCursor = cursorType => {
@@ -71,7 +81,19 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
       <GlobalStyle />
       <CustomCursor toggleMenu={toggleMenu} />
-      <Header onCursor={onCursor} />
+      <Header
+        onCursor={onCursor}
+        toggleMenu={toggleMenu}
+        setToggleMenu={setToggleMenu}
+        hamburgerPosition={hamburgerPosition}
+        setHamburgerPosition={setHamburgerPosition}
+        siteTitle={data.site.siteMetadata.title}
+      />
+      <Navigation
+        toggleMenu={toggleMenu}
+        setToggleMenu={setToggleMenu}
+        onCursor={onCursor}
+      />
       <main>{children}</main>
     </ThemeProvider>
   )
