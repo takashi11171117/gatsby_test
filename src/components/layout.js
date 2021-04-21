@@ -8,6 +8,7 @@ import { normalize } from "styled-normalize"
 import CustomCursor from "./customCursor"
 import Header from "./header"
 import Navigation from "./navigation"
+import Footer from "./footer"
 
 import {
   useGlobalStateContext,
@@ -95,6 +96,11 @@ const Layout = ({ children }) => {
         onCursor={onCursor}
       />
       <main>{children}</main>
+      <Footer
+        onCursor={onCursor}
+        hamburgerPosition={hamburgerPosition}
+        setHamburgerPosition={setHamburgerPosition}
+      />
     </ThemeProvider>
   )
 }
