@@ -1,6 +1,7 @@
 import React from "react"
 import Layout from "../components/layout"
 
+import { Link } from "gatsby"
 import HomeContent from "../components/homePage/HomeContent"
 import HomeFeatured from "../components/homePage/HomeFeatured"
 import HomeAbout from "../components/homePage/HomeAbout"
@@ -20,6 +21,7 @@ const IndexPage = props => {
   }
   return (
     <Layout>
+      <Link to="/youtube">Youtube</Link>
       <HomeBanner onCursor={onCursor} />
       <HomeContent />
       <HomeFeatured onCursor={onCursor} />
