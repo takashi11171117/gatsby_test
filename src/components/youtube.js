@@ -1,22 +1,33 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import YTPlayer from "yt-player"
 
 const Youtube = ({ video, onEnded = () => {} }) => {
-  useEffect(() => {
-    const player = new YTPlayer("#ytplayer", { width: 480, height: 270 })
-    player.load(video.resourceId.videoId, true)
-    player.setVolume(100)
-    player.on("playing", () => {
-      console.log(player.getDuration())
-    })
-    player.on("ended", () => {
-      onEnded()
-      player.destroy()
-    })
+  const [player, setPlayer] = useState(null)
 
-    return () => player.destroy
-  }, [video])
+  useEffect(() => {
+    setPlayer(new YTPlayer("#ytplayer", { width: 480, height: 270 }))
+
+    if (player) {
+      return () => player.destroy
+    }
+  }, [])
+
+  useEffect(() => {
+    if (video && player) {
+      player.load(video.resourceId.videoId, true)
+      player.setVolume(100)
+      player.on("playing", () => {
+        console.log(player.getDuration())
+      })
+      player.on("ended", () => {
+        onEnded()
+        player.destroy()
+      })
+
+      return () => player.destroy
+    }
+  }, [video, player])
 
   return (
     <>
