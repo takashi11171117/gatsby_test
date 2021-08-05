@@ -2,32 +2,42 @@ import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import YTPlayer from "yt-player"
 
+import {
+  useYoutubeApiDispatchContext,
+  useYoutubeApiStateContext,
+} from "../context/youtubeContext"
+
 const Youtube = ({ video, onEnded = () => {} }) => {
-  const [player, setPlayer] = useState(null)
+  const youtubeApiDispatch = useYoutubeApiDispatchContext()
+  const { youtubeApi } = useYoutubeApiStateContext()
 
   useEffect(() => {
-    setPlayer(new YTPlayer("#ytplayer", { width: 480, height: 270 }))
+    youtubeApiDispatch({
+      type: "SET_YOUTUBE_API",
+      youtubeApi: new YTPlayer("#ytplayer", { width: 480, height: 270 }),
+    })
 
-    if (player) {
-      return () => player.destroy
+    if (youtubeApi) {
+      return () => youtubeApi.destroy
     }
   }, [])
 
   useEffect(() => {
-    if (video && player) {
-      player.load(video.resourceId.videoId, true)
-      player.setVolume(100)
-      player.on("playing", () => {
-        console.log(player.getDuration())
-      })
-      player.on("ended", () => {
-        onEnded()
-        player.destroy()
+    if (video && youtubeApi) {
+      youtubeApi.load(video.resourceId.videoId, true)
+      youtubeApi.setVolume(100)
+      youtubeApi.on("playing", () => {
+        console.log(youtubeApi.getDuration())
       })
 
-      return () => player.destroy
+      youtubeApi.on("ended", () => {
+        onEnded()
+        // youtubeApi.destroy()
+      })
+
+      return () => youtubeApi.destroy
     }
-  }, [video, player])
+  }, [video, youtubeApi])
 
   return (
     <>
