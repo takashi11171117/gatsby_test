@@ -8,7 +8,7 @@ import useDexie from "../hooks/useDexie"
 import usePrevious from "../hooks/usePrevious"
 import axios from "axios"
 
-const API_KEY = process.env.YOUTUBE_API_KEY
+const API_KEY = process.env.GATSBY_YOUTUBE_API_KEY
 
 const IndexPage = props => {
   const { db } = useDexie()
