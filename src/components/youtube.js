@@ -24,11 +24,10 @@ const Youtube = ({ video, onEnded = () => {} }) => {
 
   useEffect(() => {
     if (video && youtubeApi) {
-      console.log(video)
       youtubeApi.load(video.resourceId.videoId, true)
       youtubeApi.setVolume(100)
       youtubeApi.on("playing", () => {
-        console.log(youtubeApi.getDuration())
+        // console.log(youtubeApi.getDuration())
       })
 
       youtubeApi.on("ended", () => {

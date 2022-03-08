@@ -5,6 +5,7 @@ import styled from "styled-components"
 import Layout from "../components/layout"
 import Youtube from "../components/youtube"
 import useDexie from "../hooks/useDexie"
+import usePrevious from "../hooks/usePrevious"
 import axios from "axios"
 
 const API_KEY = process.env.YOUTUBE_API_KEY
@@ -16,10 +17,12 @@ const IndexPage = props => {
   const [currentVideoKey, setCurrentVideoKey] = useState(0)
   const [movieListElements, setMovieListElements] = useState(null)
   const [youtubeUrl, setYoutubeUrl] = useState("")
-  const [startTime, setStartTime] = useState(0)
-  const [firstFetch, setFirstFetch] = useState(false)
-  const [playListId, setPlayListId] = useState("")
+  const [firstFetch, setFirstFetch] = useState(null)
+  const [playListId, setPlayListId] = useState(
+    "PLDYcW74an50AFC1yVmYLSh3UcToxHCWwN"
+  )
   const [isReverse, setIsReverse] = useState(false)
+  const prevPlayListId = usePrevious(playListId)
   let videos = []
 
   const fetchYoutubeList = async pageToken => {
@@ -47,37 +50,35 @@ const IndexPage = props => {
   }
 
   useEffect(() => {
-    const f = async () => {
-      if (window !== undefined) {
-        await fetchYoutubeListAll({ pageToken: "" })
-        setMovieList(videos)
+    const setNewVideo = async (playListHistory, firstFetch, videos) => {
+      if (firstFetch) {
+        return
       }
-    }
-    f()
-  }, [playListId])
 
-  useEffect(() => {
-    const f = async () => {
-      if (movieList.length !== 0) {
-        const playListHistory = await db.playLists.get(playListId.toString())
-        setFirstFetch(true)
+      if (firstFetch !== null && prevPlayListId === playListId) {
+        return
+      }
 
-        if (playListHistory && !firstFetch) {
-          let firstVideoKey = 0
-          const movie = movieList.filter((movie, index) => {
-            if (
-              movie.snippet.resourceId.videoId === playListHistory.lastVideo
-            ) {
-              firstVideoKey = index
-            }
-            return (
-              movie.snippet.resourceId.videoId === playListHistory.lastVideo
-            )
-          })[0]
+      if (playListHistory) {
+        let firstVideoKey = 0
+        const movie = videos.filter((movie, index) => {
+          if (movie.snippet.resourceId.videoId === playListHistory.lastVideo) {
+            firstVideoKey = index
+          }
+          return movie.snippet.resourceId.videoId === playListHistory.lastVideo
+        })[0]
+        console.log("aaaa")
+        if (movie !== null && movie !== undefined) {
           setCurrentVideo(movie.snippet)
           setCurrentVideoKey(firstVideoKey)
-        } else if (!firstFetch) {
-          const videoId = movieList[0].snippet.resourceId.videoId
+        } else {
+          console.log(videos)
+          setCurrentVideo(videos[0].snippet)
+          setCurrentVideoKey(0)
+        }
+      } else {
+        const videoId = videos[0].snippet.resourceId.videoId
+        if (db !== undefined && db !== null) {
           await db.playLists.put({
             playListId,
             lastVideo: videoId,
@@ -87,10 +88,38 @@ const IndexPage = props => {
             lastTime: 0,
             playListId,
           })
-          setCurrentVideo(movieList[0].snippet)
-          setCurrentVideoKey(0)
         }
+        setCurrentVideo(videos[0].snippet)
+        setCurrentVideoKey(0)
+      }
+    }
 
+    const f = async () => {
+      if (window !== undefined) {
+        await fetchYoutubeListAll({ pageToken: "" })
+        setMovieList(videos)
+
+        if (videos.length !== 0) {
+          let playListHistory
+          if (db !== undefined && db !== null) {
+            playListHistory = await db.playLists.get(playListId.toString())
+          }
+          if (firstFetch === null) {
+            setFirstFetch(true)
+          }
+
+          await setNewVideo(playListHistory, firstFetch, videos)
+
+          setFirstFetch(false)
+        }
+      }
+    }
+    f()
+  }, [playListId])
+
+  useEffect(() => {
+    const f = async () => {
+      if (movieList.length !== 0) {
         setMovieListElements(
           movieList.map((movie, key) => {
             if (movie) {
@@ -125,8 +154,6 @@ const IndexPage = props => {
   useEffect(() => {
     const f = async () => {
       if (movieList.length !== 0) {
-        console.log(currentVideoKey)
-        console.log(movieList[currentVideoKey].snippet)
         setCurrentVideo(movieList[currentVideoKey].snippet)
         const movie = movieList[currentVideoKey]
         await db.playLists.put({
@@ -138,7 +165,6 @@ const IndexPage = props => {
           .equals(movie.snippet.resourceId.videoId.toString())
           .first()
         if (videoHistory) {
-          console.log(videoHistory)
           // await db.videos.put({
           //   id: videoHistory.id,
           //   videoId: movie.snippet.resourceId.videoId,
@@ -171,8 +197,9 @@ const IndexPage = props => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(youtubeUrl)
-
+    if (!youtubeUrl.match(/https?/)) {
+      return
+    }
     const url = new URL(youtubeUrl)
     const params = new URLSearchParams(url.search)
 
@@ -203,7 +230,6 @@ const IndexPage = props => {
               <Youtube
                 video={currentVideo}
                 onEnded={() => {
-                  console.log(currentVideoKey)
                   setCurrentVideoKey(i => i + 1)
                 }}
               />
