@@ -7,7 +7,6 @@ import {
   useGlobalDispatchContext,
   useGlobalStateContext,
 } from "../context/globalContext"
-import useElementPosition from "../hooks/useElementPosition"
 
 const Header = ({
   onCursor,
@@ -18,7 +17,6 @@ const Header = ({
   const dispatch = useGlobalDispatchContext()
   const { currentTheme } = useGlobalStateContext()
   const hamburger = useRef(null)
-  const position = useElementPosition(hamburger)
 
   const toggleTheme = () => {
     if (currentTheme === "dark") {
@@ -26,11 +24,6 @@ const Header = ({
     } else {
       dispatch({ type: "TOGGLE_THEME", theme: "dark" })
     }
-  }
-
-  const menuHover = () => {
-    onCursor("locked")
-    setHamburgerPosition({ x: position.x, y: position.y + 72 })
   }
 
   useEffect(() => {
@@ -46,23 +39,11 @@ const Header = ({
         ease: [0.6, 0.05, -0.01, 0.9],
       }}
     >
-      <Container>
-        <Flex spaceBetween noHeight>
-          <Logo
-            onMouseEnter={() => onCursor("hovered")}
-            onMouseLeave={onCursor}
-          >
-            <Link to="/">
-              F
-              <span
-                onClick={toggleTheme}
-                onMouseEnter={() => onCursor("pointer")}
-                onMouseLeave={onCursor}
-              ></span>
-              <span></span>LS
-            </Link>
-          </Logo>
-          <Menu
+      <Flex spaceBetween noHeight>
+        <Logo>
+          <Link to="/">YOUTUBE PLAYLIST PLAYER</Link>
+        </Logo>
+        {/* <Menu
             onClick={() => setToggleMenu(!toggleMenu)}
             ref={hamburger}
             onMouseEnter={menuHover}
@@ -72,9 +53,8 @@ const Header = ({
               <span></span>
               <span></span>
             </button>
-          </Menu>
-        </Flex>
-      </Container>
+          </Menu> */}
+      </Flex>
     </HeaderNav>
   )
 }

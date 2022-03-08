@@ -9,6 +9,10 @@ export const HeaderNav = styled(motion.div)`
   right: 0;
   left: 0;
   z-index: 99;
+  margin-left: 24px;
+  a {
+    color: red;
+  }
 `
 export const Logo = styled.div`
   a {

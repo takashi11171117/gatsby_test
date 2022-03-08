@@ -5,7 +5,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import { createGlobalStyle, ThemeProvider } from "styled-components"
 import { normalize } from "styled-normalize"
 
-import CustomCursor from "./customCursor"
 import Header from "./header"
 import Navigation from "./navigation"
 import Footer from "./footer"
@@ -19,14 +18,11 @@ const GlobalStyle = createGlobalStyle`
 ${normalize}
 * {
   text-decoration: none;
-  cursor: none;
 }
 html {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    font-size: 16px;
-  
-  
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
 }
 body {
   font-size: 16px;
@@ -81,7 +77,6 @@ const Layout = ({ children }) => {
   return (
     <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
       <GlobalStyle />
-      <CustomCursor toggleMenu={toggleMenu} />
       <Header
         onCursor={onCursor}
         toggleMenu={toggleMenu}
