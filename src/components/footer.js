@@ -6,9 +6,9 @@ import { useAnimation } from "framer-motion"
 
 //Styled Components
 import { Container, Flex } from "../styles/globalStyles"
-import { FooterNav, FooterContent, FooterSocial } from "../styles/footerStyles"
+import { FooterNav, FooterContent } from "../styles/footerStyles"
 
-const Footer = ({ setHamburgerPosition, onCursor }) => {
+const Footer = () => {
   const animation = useAnimation()
   const [footerRef, inView] = useInView({
     triggerOnce: true,
@@ -19,11 +19,6 @@ const Footer = ({ setHamburgerPosition, onCursor }) => {
       animation.start("visible")
     }
   }, [animation, inView])
-
-  const menuHover = x => {
-    onCursor("locked")
-    setHamburgerPosition({ x: x })
-  }
 
   return (
     <FooterNav

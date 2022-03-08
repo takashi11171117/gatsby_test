@@ -4,15 +4,9 @@ import useWindowSize from "../../hooks/useWindowSize"
 
 import { useGlobalStateContext } from "../../context/globalContext"
 
-import {
-  Banner,
-  Video,
-  BannerTitle,
-  Canvas,
-  Headline,
-} from "../../styles/homeStyles"
+import { Banner, Video, BannerTitle, Headline } from "../../styles/homeStyles"
 
-const HomeBanner = ({ onCursor }) => {
+const HomeBanner = () => {
   const size = useWindowSize()
   const { currentTheme } = useGlobalStateContext()
   let canvas = useRef(null)
@@ -98,13 +92,6 @@ const HomeBanner = ({ onCursor }) => {
           src={require("../../assets/video/video.mp4")}
         />
       </Video>
-      <Canvas
-        height={size.height}
-        width={size.width}
-        ref={canvas}
-        onMouseEnter={() => onCursor("hovered")}
-        onMouseLeave={onCursor}
-      />
       <BannerTitle variants={container} initial="initial" animate="animate">
         <Headline variants={item}>DIG</Headline>
         <Headline variants={item}>DEEP</Headline>

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
@@ -6,13 +6,7 @@ import { createGlobalStyle, ThemeProvider } from "styled-components"
 import { normalize } from "styled-normalize"
 
 import Header from "./header"
-import Navigation from "./navigation"
 import Footer from "./footer"
-
-import {
-  useGlobalStateContext,
-  useGlobalDispatchContext,
-} from "../context/globalContext"
 
 const GlobalStyle = createGlobalStyle`
 ${normalize}
@@ -34,8 +28,6 @@ body {
 `
 
 const Layout = ({ children }) => {
-  const dispatch = useGlobalDispatchContext()
-  const { cursorStyles, currentTheme } = useGlobalStateContext()
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -46,56 +38,18 @@ const Layout = ({ children }) => {
     }
   `)
 
-  const [hamburgerPosition, setHamburgerPosition] = useState({
-    x: 0,
-    y: 0,
-  })
-
-  const [toggleMenu, setToggleMenu] = useState(false)
-
   const darkTheme = {
     background: "#000",
     text: "#fff",
     red: "#ea291e",
-    left: `${hamburgerPosition.x}px`,
-    top: `${hamburgerPosition.y}px`,
-  }
-
-  const lightTheme = {
-    background: "#fff",
-    text: "#000",
-    red: "#ea291e",
-    left: `${hamburgerPosition.x}px`,
-    top: `${hamburgerPosition.y}px`,
-  }
-
-  const onCursor = cursorType => {
-    cursorType = (cursorStyles.includes(cursorType) && cursorType) || false
-    dispatch({ type: "CURSOR_TYPE", cursorType: cursorType })
   }
 
   return (
-    <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
+    <ThemeProvider theme={darkTheme}>
       <GlobalStyle />
-      <Header
-        onCursor={onCursor}
-        toggleMenu={toggleMenu}
-        setToggleMenu={setToggleMenu}
-        hamburgerPosition={hamburgerPosition}
-        setHamburgerPosition={setHamburgerPosition}
-        siteTitle={data.site.siteMetadata.title}
-      />
-      <Navigation
-        toggleMenu={toggleMenu}
-        setToggleMenu={setToggleMenu}
-        onCursor={onCursor}
-      />
+      <Header />
       <main>{children}</main>
-      <Footer
-        onCursor={onCursor}
-        hamburgerPosition={hamburgerPosition}
-        setHamburgerPosition={setHamburgerPosition}
-      />
+      <Footer />
     </ThemeProvider>
   )
 }

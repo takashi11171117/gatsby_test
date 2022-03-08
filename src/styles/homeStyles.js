@@ -51,17 +51,6 @@ export const Content = styled(motion.h2)`
   color: ${props => props.theme.text};
 `
 
-//Featured Section
-export const HomeFeaturedSection = styled(motion.div)`
-  margin-bottom: 200px;
-  position: relative;
-  a {
-    margin-bottom: 200px;
-    position: relative;
-    display: block;
-  }
-`
-
 export const FeaturedContent = styled(motion.div)`
   height: 480px;
   width: 100%;
