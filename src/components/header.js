@@ -15,7 +15,7 @@ const Header = () => {
     >
       <Flex spaceBetween noHeight>
         <Logo>
-          <Link to="/">YOUTUBE PLAYLIST PLAYER</Link>
+          <Link to="/">Roul</Link>
         </Logo>
         <Link to="/player">PLAYER Page</Link>
       </Flex>

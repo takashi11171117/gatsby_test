@@ -213,7 +213,12 @@ const IndexPage = props => {
 
   return (
     <Layout>
-      <p>
+      <Main>
+        RoulとはReverse Other User Listの略で
+        <br />
+        他人のリストを逆再生する為だけに作られたツールです
+        <br />
+        <br />
         【他人が作成したYouTubeのリストを逆再生する方法】
         <br />
         自分が作成したリストは逆再生出来るのに、他のユーザーのリストは逆再生出来ないぞ！とお困りの方。
@@ -236,7 +241,7 @@ const IndexPage = props => {
         パソコンで使う分にはOKですが、スマホだと不満に思う方もおられるかも知れません。
         <br />
         今後改善される事を期待しましょう。
-      </p>
+      </Main>
     </Layout>
   )
 }
@@ -248,17 +253,9 @@ export const SCReverse = styled.div`
 `
 
 export const Main = styled.div`
-  display: flex;
-  margin-top: 120px;
   color: white;
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-  }
-  p {
-    color: white;
-    margin-top: 180px;
-    margin-left: 36px;
-  }
+  margin-top: 180px;
+  margin-left: 36px;
 `
 
 export const InputArea = styled.form`
