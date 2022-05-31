@@ -214,7 +214,7 @@ const IndexPage = props => {
   return (
     <Layout>
       <Main>
-        RoulとはReverse Other User Listの略で
+        RoulとはReverse Other Users Listの略で
         <br />
         他人のリストを逆再生する為だけに作られたツールです
         <br />
