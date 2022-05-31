@@ -254,6 +254,11 @@ export const Main = styled.div`
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
+  p {
+    color: white;
+    margin-top: 180px;
+    margin-left: 36px;
+  }
 `
 
 export const InputArea = styled.form`
