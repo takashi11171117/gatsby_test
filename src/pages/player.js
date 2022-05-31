@@ -213,7 +213,37 @@ const IndexPage = props => {
 
   return (
     <Layout>
-      <p>Youtube Player</p>
+      <YoutubeApiProvider>
+        <Main>
+          <Video>
+            <InputArea onSubmit={e => handleSubmit(e)}>
+              <div>
+                <p>URL: (Playlist Or Channel)</p>
+                <button>Search</button>
+              </div>
+              <input
+                type="text"
+                onChange={e => setYoutubeUrl(e.target.value)}
+              />
+            </InputArea>
+            {currentVideo && (
+              <Youtube
+                video={currentVideo}
+                onEnded={() => {
+                  setCurrentVideoKey(i => i + 1)
+                }}
+              />
+            )}
+          </Video>
+          <VideoList>
+            <SCReverse>
+              <span>reverse:　</span>
+              <Switch onChange={handleChange} checked={isReverse} />
+            </SCReverse>
+            <ul>{movieListElements}</ul>
+          </VideoList>
+        </Main>
+      </YoutubeApiProvider>
     </Layout>
   )
 }

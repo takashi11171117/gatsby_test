@@ -17,6 +17,7 @@ const Header = () => {
         <Logo>
           <Link to="/">YOUTUBE PLAYLIST PLAYER</Link>
         </Logo>
+        <Link to="/player">PLAYER Page</Link>
       </Flex>
     </HeaderNav>
   )
