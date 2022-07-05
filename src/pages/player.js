@@ -256,7 +256,7 @@ export const SCReverse = styled.div`
 
 export const Main = styled.div`
   display: flex;
-  margin-top: 120px;
+  margin-top: 16px;
   color: white;
   @media screen and (max-width: 768px) {
     flex-direction: column;
@@ -318,7 +318,7 @@ export const Title = styled.div`
 
 export const Video = styled.div`
   width: calc(100% - 298px);
-  margin-left: 24px;
+  margin-left: 32px;
   @media screen and (max-width: 768px) {
     width: calc(100% - 48px);
   }

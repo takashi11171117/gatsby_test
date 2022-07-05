@@ -214,27 +214,41 @@ const IndexPage = props => {
   return (
     <Layout>
       <Main>
-        RoulとはReverse Other Users Listの略で
-        <br />
+        <Eyecatch />
+        <h1>RoulとはReverse Other Users Listの略で</h1>
         他人のリストを逆再生する為だけに作られたツールです
         <br />
         <br />
-        【他人が作成したYouTubeのリストを逆再生する方法】
+        <br />
+        <br />
+        <h2>【他人が作成したYouTubeのリストを逆再生する方法】</h2>
         <br />
         自分が作成したリストは逆再生出来るのに、他のユーザーのリストは逆再生出来ないぞ！とお困りの方。
         <br />
-        その方法をご紹介します。 その方法は、 「○○」 というツールを使います。
+        その方法をご紹介します。 その方法は、
+        <a href="/player">
+          <strong>「Roul」</strong>
+        </a>
+        というツールを使います。
         <br />
         このツールは、他人のリストの逆再生の為だけのツールです。
         <br />
-        やり方としては、 1,逆再生したいリストのリンクを貼り付ける
+        やり方としては、
         <br />
-        2,作成のボタンを押す こんな簡単に出来るって…
+        <ol>
+          <li>逆再生したいリストのリンクを貼り付ける </li>
+          <li>作成のボタンを押すこんな簡単に出来るって…</li>
+        </ol>
+        <br />
         <br />
         今まで動画1つ1つを手動でリストにしていた手間はなんだったんだ…
         以上が○○の使い方です。
         <br />
-        ただ、○○にもデメリットはあります。 それは、
+        ただ、
+        <a href="/player">
+          <strong>「Roul」</strong>
+        </a>
+        にもデメリットはあります。 それは、
         「アプリではなく、ブラウザなので、オフライン再生が出来ない。」
         という点です。
         <br />
@@ -254,8 +268,9 @@ export const SCReverse = styled.div`
 
 export const Main = styled.div`
   color: white;
-  margin-top: 180px;
-  margin-left: 36px;
+  margin-top: 16px;
+  margin-left: 32px;
+  margin-right: 32px;
 `
 
 export const InputArea = styled.form`
@@ -277,8 +292,8 @@ export const InputArea = styled.form`
 `
 
 export const VideoList = styled.div`
-  margin-right: 24px;
-  margin-left: 24px;
+  margin-right: 32px;
+  margin-left: 32px;
   width: 250px;
   height: 100vh;
   overflow: scroll;
@@ -309,6 +324,17 @@ export const Title = styled.div`
   font-size: 12px;
   font-weight: bold;
   margin-bottom: 8px;
+`
+
+export const Eyecatch = styled.div`
+  display: flex;
+  height: 380px;
+  background: url("https://images.unsplash.com/photo-1548328928-34db1c5fcc1f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  align-items: center;
+  justify-content: center;
 `
 
 export const Video = styled.div`

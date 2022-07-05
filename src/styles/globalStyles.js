@@ -45,11 +45,6 @@ export const Flex = styled.div`
     css`
       align-items: flex-start;
     `};
-  ${props =>
-    props.noHeight &&
-    css`
-      height: 0;
-    `};
 `
 
 export const Cursor = styled.div`
