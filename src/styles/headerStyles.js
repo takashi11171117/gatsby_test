@@ -7,17 +7,21 @@ export const HeaderNav = styled.div`
   }
 `
 export const Logo = styled.div`
+  display: flex;
+  align-items: end;
   a {
     font-size: 1.8rem;
     text-decoration: none;
     font-weight: 800;
     color: #000;
-    color: ${props => props.theme.text};
+    border: 2px solid #aaa;
+    padding-right: 8px;
+    padding-left: 8px;
+    padding-bottom: 2px;
   }
   span {
     height: 16px;
     width: 16px;
-    background: ${props => props.theme.red};
     margin: 0 4px;
     border-radius: 100%;
     display: inline-block;
@@ -37,7 +41,6 @@ export const Menu = styled.div`
       width: 36px;
       height: 8px;
       display: block;
-      background: ${props => props.theme.text};
       margin: 8px;
     }
   }

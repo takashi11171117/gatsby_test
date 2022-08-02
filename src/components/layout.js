@@ -10,9 +10,6 @@ import Footer from "./footer"
 
 const GlobalStyle = createGlobalStyle`
 ${normalize}
-* {
-  text-decoration: none;
-}
 html {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -21,9 +18,14 @@ html {
 body {
   font-size: 16px;
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background: ${props => props.theme.background};
+  background: #fff;
   overscroll-behavior: none;
   overflow-x: hidden;
+}
+h1, h2, h3, h4 {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
 }
 `
 
@@ -39,8 +41,8 @@ const Layout = ({ children }) => {
   `)
 
   const darkTheme = {
-    background: "#000",
-    text: "#fff",
+    background: "#fff",
+    text: "#222",
     red: "#ea291e",
   }
 

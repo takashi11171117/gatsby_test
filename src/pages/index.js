@@ -215,13 +215,19 @@ const IndexPage = props => {
     <Layout>
       <Main>
         <Eyecatch />
-        <h1>RoulとはReverse Other Users Listの略で</h1>
+        <MainH2>RoulとはReverse Other Users Listの略で</MainH2>
+        <br />
         他人のリストを逆再生する為だけに作られたツールです
         <br />
         <br />
+        <Images>
+          <img src="https://images.unsplash.com/photo-1640955014216-75201056c829?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" />
+          <img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" />
+        </Images>
         <br />
         <br />
-        <h2>【他人が作成したYouTubeのリストを逆再生する方法】</h2>
+        <br />
+        <MainH3>【他人が作成したYouTubeのリストを逆再生する方法】</MainH3>
         <br />
         自分が作成したリストは逆再生出来るのに、他のユーザーのリストは逆再生出来ないぞ！とお困りの方。
         <br />
@@ -267,10 +273,32 @@ export const SCReverse = styled.div`
 `
 
 export const Main = styled.div`
-  color: white;
+  color: black;
   margin-top: 16px;
   margin-left: 32px;
   margin-right: 32px;
+`
+
+export const MainH2 = styled.h2`
+  border-left: 5px solid #ff0000;
+  padding-left: 5px;
+`
+
+export const MainH3 = styled.h3`
+  display: inline-block;
+  border-bottom: 3px solid #ff0000;
+  margin-bottom: 24px;
+`
+
+export const Images = styled.div`
+  display: flex;
+  margin-left: -8px;
+  margin-right: -8px;
+  img {
+    padding-left: 8px;
+    padding-right: 8px;
+    width: calc(50% - 16px);
+  }
 `
 
 export const InputArea = styled.form`
@@ -307,7 +335,7 @@ export const VideoList = styled.div`
   a {
     display: flex;
     align-items: center;
-    color: white;
+    color: black;
   }
   img {
     width: 80px;
@@ -329,6 +357,7 @@ export const Title = styled.div`
 export const Eyecatch = styled.div`
   display: flex;
   height: 380px;
+  margin-bottom: 56px;
   background: url("https://images.unsplash.com/photo-1548328928-34db1c5fcc1f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80");
   background-repeat: no-repeat;
   background-size: cover;

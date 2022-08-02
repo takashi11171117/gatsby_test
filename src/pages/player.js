@@ -257,7 +257,7 @@ export const SCReverse = styled.div`
 export const Main = styled.div`
   display: flex;
   margin-top: 16px;
-  color: white;
+  color: #333;
   @media screen and (max-width: 768px) {
     flex-direction: column;
   }
@@ -297,7 +297,7 @@ export const VideoList = styled.div`
   a {
     display: flex;
     align-items: center;
-    color: white;
+    color: #333;
   }
   img {
     width: 80px;
