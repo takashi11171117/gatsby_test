@@ -234,18 +234,27 @@ const IndexPage = props => {
         </a>
         というツールを使います。
         <br />
+        <br />
+        <br />
+        <MainH3>【Roulとは】</MainH3>
+        <br />
         このツールは、他人のリストの逆再生の為だけのツールです。
         <br />
         やり方としては、
         <br />
-        <ol>
+        <MainOl>
           <li>逆再生したいリストのリンクを貼り付ける </li>
           <li>作成のボタンを押すこんな簡単に出来るって…</li>
-        </ol>
+        </MainOl>
         <br />
         <br />
-        今まで動画1つ1つを手動でリストにしていた手間はなんだったんだ…
-        以上が○○の使い方です。
+        <MainH3>【Roulを使ってみよう】</MainH3>
+        <br />
+        今まで動画1つ1つを手動でリストにしていた手間はなんだったんだ… 以上が
+        <a href="/player">
+          <strong>「Roul」</strong>
+        </a>
+        の使い方です。
         <br />
         ただ、
         <a href="/player">
@@ -290,6 +299,15 @@ export const MainH3 = styled.h3`
   display: inline-block;
   border-bottom: 3px solid #ff0000;
   margin-bottom: 24px;
+`
+
+export const MainOl = styled.ol`
+  display: inline-block;
+  background-color: #ffaaaa;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-right: 16px;
+  border-radius: 8px;
 `
 
 export const Images = styled.div`
