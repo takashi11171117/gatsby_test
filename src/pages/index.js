@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { YoutubeApiProvider } from "../context/youtubeContext"
-import Switch from "react-switch"
 import styled from "styled-components"
 import Layout from "../components/layout"
-import Youtube from "../components/youtube"
 import useDexie from "../hooks/useDexie"
 import usePrevious from "../hooks/usePrevious"
 import axios from "axios"
@@ -13,8 +10,8 @@ const API_KEY = process.env.GATSBY_YOUTUBE_API_KEY
 const IndexPage = props => {
   const { db } = useDexie()
   const [movieList, setMovieList] = useState([])
-  const [currentVideo, setCurrentVideo] = useState(null)
   const [currentVideoKey, setCurrentVideoKey] = useState(0)
+  const [currentVideo, setCurrentVideo] = useState(null)
   const [movieListElements, setMovieListElements] = useState(null)
   const [youtubeUrl, setYoutubeUrl] = useState("")
   const [firstFetch, setFirstFetch] = useState(null)
@@ -213,8 +210,8 @@ const IndexPage = props => {
 
   return (
     <Layout>
+      <Eyecatch />
       <Main>
-        <Eyecatch />
         <MainH2>RoulとはReverse Other Users Listの略で</MainH2>
         <br />
         他人のリストを逆再生する為だけに作られたツールです
@@ -274,9 +271,14 @@ export const SCReverse = styled.div`
 
 export const Main = styled.div`
   color: black;
+  width: 980px;
+  margin: 0 auto;
   margin-top: 16px;
-  margin-left: 32px;
-  margin-right: 32px;
+  padding-left: 16px;
+  padding-right: 16px;
+  @media screen and (max-width: 980px) {
+    width: calc(100% - 32px);
+  }
 `
 
 export const MainH2 = styled.h2`
