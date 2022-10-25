@@ -214,7 +214,9 @@ const IndexPage = props => {
       <Main>
         <MainH2>RoulとはReverse Other Users Listの略で</MainH2>
         <br />
-        他人の再生リストを逆再生する為だけに作られたツールです
+        他人の再生リストを逆再生する為だけに作られたツールです。
+        <br />
+        YouTubeのプレイリストを簡単に逆再生できる便利ツール。
         <br />
         <br />
         <Images>
