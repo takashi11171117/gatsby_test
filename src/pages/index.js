@@ -368,6 +368,7 @@ export const VideoList = styled.div`
   @media screen and (max-width: 768px) {
     margin-top: 60px;
     width: calc(100% - 48px);
+    margin-left: 24px;
   }
 `
 

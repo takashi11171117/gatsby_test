@@ -18,9 +18,7 @@ const IndexPage = props => {
   const [movieListElements, setMovieListElements] = useState(null)
   const [youtubeUrl, setYoutubeUrl] = useState("")
   const [firstFetch, setFirstFetch] = useState(null)
-  const [playListId, setPlayListId] = useState(
-    "PLDYcW74an50AFC1yVmYLSh3UcToxHCWwN"
-  )
+  const [playListId, setPlayListId] = useState("")
   const [isReverse, setIsReverse] = useState(false)
   const prevPlayListId = usePrevious(playListId)
   let videos = []
@@ -226,22 +224,40 @@ const IndexPage = props => {
                 onChange={e => setYoutubeUrl(e.target.value)}
               />
             </InputArea>
-            {currentVideo && (
+            {currentVideo ? (
               <Youtube
                 video={currentVideo}
                 onEnded={() => {
                   setCurrentVideoKey(i => i + 1)
                 }}
               />
+            ) : (
+              <div>
+                URLが入力されていません。
+                <br /> プレイリストのURLを入力して下さい。
+                <br />
+                <br />
+                <img src="https://images.unsplash.com/photo-1616024088891-b7665fb9699e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&q=80" />
+              </div>
             )}
           </Video>
-          <VideoList>
-            <SCReverse>
-              <span>reverse:　</span>
-              <Switch onChange={handleChange} checked={isReverse} />
-            </SCReverse>
-            <ul>{movieListElements}</ul>
-          </VideoList>
+          <SCVideoListContainer>
+            <VideoList>
+              <SCReverse>
+                <span>reverse:　</span>
+                <Switch onChange={handleChange} checked={isReverse} />
+              </SCReverse>
+              {movieListElements !== null && movieListElements.length > 0 ? (
+                <ul>{movieListElements}</ul>
+              ) : (
+                <div>
+                  <br />
+                  URLが入力されていません。
+                  <br /> プレイリストのURLを入力して下さい。
+                </div>
+              )}
+            </VideoList>
+          </SCVideoListContainer>
         </Main>
       </YoutubeApiProvider>
     </Layout>
@@ -282,11 +298,9 @@ export const InputArea = styled.form`
 `
 
 export const VideoList = styled.div`
-  margin-right: 24px;
-  margin-left: 24px;
-  width: 250px;
-  height: 100vh;
   overflow: scroll;
+  height: 100vh;
+  width: 100%;
   ul {
     padding: 0;
   }
@@ -304,9 +318,28 @@ export const VideoList = styled.div`
     height: 100%;
     margin-right: 10px;
   }
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    --bg-opacity: 1;
+    background-color: #666666;
+  }
+`
+
+export const SCVideoListContainer = styled.div`
+  padding: 8px;
+  margin-right: 24px;
+  margin-left: 24px;
+  width: 250px;
+  border: 1px solid #333333;
   @media screen and (max-width: 768px) {
     margin-top: 60px;
-    width: calc(100% - 48px);
+    width: calc(100% - 64px);
   }
 `
 
@@ -321,6 +354,13 @@ export const Video = styled.div`
   margin-left: 32px;
   @media screen and (max-width: 768px) {
     width: calc(100% - 48px);
+    margin-left: 24px;
+  }
+  img {
+    width: 100%;
+    aspect-ratio: 16 / 16;
+    object-fit: cover;
+    object-position: right top;
   }
 `
 
