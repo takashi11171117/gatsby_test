@@ -232,6 +232,7 @@ const IndexPage = props => {
         <br />
         その方法をご紹介します。
         <br />
+        <br />
         <MainH3>
           【他人のプレイリストをコピーしてキューを利用して並べ替える】
         </MainH3>
@@ -250,8 +251,10 @@ const IndexPage = props => {
         <br />
         <strong>
           しかし、いちいち順番を並べ替えるのはめちゃくちゃめんどくさい
+          <br />
           もっとYoutube逆再生が簡単にできる画期的なツールがあります。
         </strong>
+        <br />
         <MainH3>【Youtube逆再生が簡単にできる画期的なツールとは！】</MainH3>
         <br />
         その方法は、
