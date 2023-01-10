@@ -230,7 +230,31 @@ const IndexPage = props => {
         <br />
         自分が作成したプレイリストは逆再生出来るのに、他のユーザーのプレイリストは逆再生出来ないぞ！とお困りの方。
         <br />
-        その方法をご紹介します。 その方法は、
+        その方法をご紹介します。
+        <br />
+        <MainH3>
+          【他人のプレイリストをコピーしてキューを利用して並べ替える】
+        </MainH3>
+        まずは、Youtubeのキューという機能を使う方法
+        以下の動画で説明してくれています。
+        <br />
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/Il36hlp0DOg"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+        <br />
+        <strong>
+          しかし、いちいち順番を並べ替えるのはめちゃくちゃめんどくさい
+          もっとYoutube逆再生が簡単にできる画期的なツールがあります。
+        </strong>
+        <MainH3>【Youtube逆再生が簡単にできる画期的なツールとは！】</MainH3>
+        <br />
+        その方法は、
         <a href="/player">
           <strong>「Roul」</strong>
         </a>
