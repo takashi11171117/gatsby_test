@@ -252,7 +252,7 @@ const IndexPage = props => {
         <strong>
           しかし、いちいち順番を並べ替えるのはめちゃくちゃめんどくさい
           <br />
-          もっとYoutube逆再生が簡単にできる画期的なツールがあります。
+          もっとYoutubeプレイリストの逆再生が簡単にできる画期的なツールがあります。
         </strong>
         <br />
         <MainH3>【Youtube逆再生が簡単にできる画期的なツールとは！】</MainH3>
